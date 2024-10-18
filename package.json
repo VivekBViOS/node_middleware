@@ -13,8 +13,8 @@
     "cors": "^2.8.5",
     "crypto": "^1.0.1",
     "express": "^4.21.1",
-    "nodemon": "^3.1.7",
-    "serverless-http": "^3.2.0",
-    "start": "node app.js"
+    "netlify-cli": "^17.17.1",
+    "netlify-lambda": "^2.0.16",
+    "serverless-http": "^3.2.0"
   }
 }
