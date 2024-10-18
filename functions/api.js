@@ -2,7 +2,7 @@ const express = require("express");
 const serverless = require("serverless-http");
 
 const app = express();
-// const router = express.Router();
+const router = express.Router();
 
 
 
@@ -14,25 +14,25 @@ const crypto = require('crypto');
 // In-memory storage (replace with a database in production)
 const dataStore = {};
 
-app.use(cors());
-app.use(bodyParser.urlencoded({ extended: true }));
-app.use(bodyParser.json());
+router.use(cors());
+router.use(bodyParser.urlencoded({ extended: true }));
+router.use(bodyParser.json());
 
 
-app.get("/", (req, res) => {
+router.get("/", (req, res) => {
     res.json({
         hello: "hi!"
     });
 });
 
-app.get('/test', (req, res) => {
+router.get('/test', (req, res) => {
     res.json({
         hello: "test!"
     });
 
 })
 
-app.post('/testpost', (req, res) => {
+router.post('/testpost', (req, res) => {
     res.json({
         hello: "hit the POST!"
     });
@@ -40,7 +40,7 @@ app.post('/testpost', (req, res) => {
 
 
 // Intermediary endpoint
-app.post('/intermediary', (req, body) => {
+router.post('/intermediary', (req, body) => {
     const uniqueId = crypto.randomBytes(16).toString('hex');
     dataStore[uniqueId] = req.body;
 
@@ -57,7 +57,7 @@ app.post('/intermediary', (req, body) => {
 });
 
 // Endpoint to retrieve data
-app.get('/getData', (req, res) => {
+router.get('/getData', (req, res) => {
     const { id } = req.query;
     if (dataStore[id]) {
         res.json(dataStore[id]);
@@ -67,12 +67,12 @@ app.get('/getData', (req, res) => {
     }
 });
 
-const PORT = process.env.PORT || 4040;
+// const PORT = process.env.PORT || 4040;
 
-app.listen(PORT, console.log(
-    `Server started on port ${PORT}`));
+// router.listen(PORT, console.log(
+//     `Server started on port ${PORT}`));
 
-// app.use(`/.netlify/functions/api`, router);
+app.use(`/.netlify/functions/api`, router);
 
-// module.exports = app;
-// module.exports.handler = serverless(app);
+module.exports = app;
+module.exports.handler = serverless(app);
