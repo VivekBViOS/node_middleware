@@ -49,11 +49,13 @@ router.post('/intermediary', (req, body) => {
         delete dataStore[uniqueId];
     }, 5 * 60 * 1000);
 
+    console.log("Request body::::" + body.toString);
+
     // body.json({
     //     hello: "hit the POST!"
     // });
     // Redirect to Flutter web app
-    body.redirect(`https://your-flutter-web-app.com/?id=${uniqueId}`);
+    body.redirect(`https://iifl-loans-app.azurewebsites.net/?id=${uniqueId}`);
 });
 
 // Endpoint to retrieve data

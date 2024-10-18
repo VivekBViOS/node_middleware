@@ -53,7 +53,7 @@ router.post('/intermediary', (req, body) => {
     //     hello: "hit the POST!"
     // });
     // Redirect to Flutter web app
-    body.redirect(`https://your-flutter-web-app.com/?id=${uniqueId}`);
+    body.redirect(`https://iifl-loans-app.azurewebsites.net/?id=${uniqueId}`);
 });
 
 // Endpoint to retrieve data
