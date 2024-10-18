@@ -40,7 +40,7 @@ router.post('/testpost', (req, res) => {
 
 
 // Intermediary endpoint
-router.post('/intermediary', (req, body, res) => {
+router.post('/intermediary', (req, res) => {
     const uniqueId = crypto.randomBytes(16).toString('hex');
     dataStore[uniqueId] = req.body;
 
@@ -55,7 +55,8 @@ router.post('/intermediary', (req, body, res) => {
     //     hello: "hit the POST!"
     // });
     // Redirect to Flutter web app
-    res.redirect(`https://iifl-loans-app.azurewebsites.net/?id=${uniqueId}`);
+    console.log(`redirecting after sucess`);
+    res.redirect(200, `https://iifl-loans-app.azurewebsites.net/?id=${uniqueId}`);
 });
 
 // Endpoint to retrieve data
