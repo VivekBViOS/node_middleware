@@ -49,7 +49,7 @@ router.post('/intermediary', (req, body) => {
         delete dataStore[uniqueId];
     }, 5 * 60 * 1000);
 
-    console.log("Request body::::" + body.toString);
+    //console.log("Request body::::" + body.toString);
 
     // body.json({
     //     hello: "hit the POST!"
